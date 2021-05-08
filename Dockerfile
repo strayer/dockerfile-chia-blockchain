@@ -1,5 +1,7 @@
 FROM python:3.9-buster AS install
 
+RUN apt-get update; apt-get full-upgrade -y; rm -rf /var/lib/apt/lists
+
 ARG CHIA_VERSION=1.1.4
 ARG VIRTUAL_ENV=/venv
 
@@ -15,11 +17,14 @@ RUN pip install "chia-blockchain==${CHIA_VERSION}"
 
 FROM python:3.9-slim-buster AS production
 
+RUN apt-get update; apt-get full-upgrade -y; rm -rf /var/lib/apt/lists
+
 ARG VIRTUAL_ENV=/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 COPY --from=install $VIRTUAL_ENV/ $VIRTUAL_ENV/
 COPY start-*.sh /usr/local/bin
+COPY entrypoint.sh /usr/local/bin
 
 # Full Node
 EXPOSE 8555
@@ -30,4 +35,5 @@ EXPOSE 8560
 # Wallet
 EXPOSE 9256
 
+ENTRYPOINT [ "entrypoint.sh" ]
 CMD [ "start-full-node.sh" ]
