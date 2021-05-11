@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -eo pipefail
 
 if [[ ! -f "$KEYFILE" ]]; then
-	echo "$KEYFILE not found/mounted!" >&2
-  exit -1
+  echo "Warning: $KEYFILE not found/mounted! No wallet keys configured." >&2
+else
+  chia keys add -f "$KEYFILE" >/dev/null
 fi
-
-chia keys add -f "$KEYFILE" >/dev/null
 
 exec "$@"
