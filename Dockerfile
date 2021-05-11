@@ -35,7 +35,5 @@ EXPOSE 8560
 # Wallet
 EXPOSE 9256
 
-ENV CHIA_ROOT=/chia_root
-
 ENTRYPOINT [ "entrypoint.sh" ]
 CMD [ "start-full-node.sh" ]
