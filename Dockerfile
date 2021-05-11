@@ -2,7 +2,7 @@ FROM python:3.9-buster AS install
 
 RUN apt-get update; apt-get full-upgrade -y; rm -rf /var/lib/apt/lists
 
-ARG CHIA_VERSION=1.1.4
+ARG CHIA_VERSION=1.1.5
 ARG VIRTUAL_ENV=/venv
 
 # Setup virtualenv
