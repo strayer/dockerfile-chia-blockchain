@@ -13,6 +13,9 @@ RUN pip install --no-cache-dir -U pip setuptools wheel
 # Install chia-blockchain
 RUN pip install "chia-blockchain==${CHIA_VERSION}"
 
+# Workaround for https://github.com/Chia-Network/chia-blockchain/issues/11257
+RUN chmod -R 777 /venv/lib/python3.9/site-packages/chia/wallet/puzzles
+
 ###
 
 FROM python:3.9-slim-bullseye AS production
