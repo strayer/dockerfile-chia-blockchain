@@ -3,7 +3,7 @@ FROM python:3.9-bullseye AS install
 RUN apt-get update; apt-get full-upgrade -y; rm -rf /var/lib/apt/lists
 
 # renovate: datasource=pypi depName=chia
-ARG CHIA_VERSION=1.3.4
+ARG CHIA_VERSION=2.5.0
 ARG VIRTUAL_ENV=/venv
 
 # Setup virtualenv
