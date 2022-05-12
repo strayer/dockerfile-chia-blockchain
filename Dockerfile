@@ -1,4 +1,4 @@
-FROM python:3.9-bullseye AS install
+FROM python:3.10-bullseye AS install
 
 RUN apt-get update; apt-get full-upgrade -y; rm -rf /var/lib/apt/lists
 
@@ -19,7 +19,7 @@ RUN chmod -R 777 /venv/lib/python3.9/site-packages/chia/wallet/puzzles
 
 ###
 
-FROM python:3.9-slim-bullseye AS production
+FROM python:3.10-slim-bullseye AS production
 
 RUN apt-get update; apt-get full-upgrade -y; rm -rf /var/lib/apt/lists
 
