@@ -1,9 +1,9 @@
-FROM python:3.9-bullseye AS install
+FROM python:3.10-bullseye AS install
 
 RUN apt-get update; apt-get full-upgrade -y; rm -rf /var/lib/apt/lists
 
 # renovate: datasource=pypi depName=chia-blockchain
-ARG CHIA_VERSION=1.3.4
+ARG CHIA_VERSION=1.6.0
 ARG VIRTUAL_ENV=/venv
 
 # Setup virtualenv
@@ -15,11 +15,11 @@ RUN pip install --no-cache-dir -U pip setuptools wheel
 RUN pip install "chia-blockchain==${CHIA_VERSION}"
 
 # Workaround for https://github.com/Chia-Network/chia-blockchain/issues/11257
-RUN chmod -R 777 /venv/lib/python3.9/site-packages/chia/wallet/puzzles
+RUN chmod -R 777 /venv/lib/python3.10/site-packages/chia/wallet/puzzles
 
 ###
 
-FROM python:3.9-slim-bullseye AS production
+FROM python:3.10-slim-bullseye AS production
 
 RUN apt-get update; apt-get full-upgrade -y; rm -rf /var/lib/apt/lists
 
