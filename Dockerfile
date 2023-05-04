@@ -3,7 +3,7 @@ FROM python:3.10-bullseye AS install
 RUN apt-get update; apt-get full-upgrade -y; rm -rf /var/lib/apt/lists
 
 # renovate: datasource=pypi depName=chia-blockchain
-ARG CHIA_VERSION=1.6.0
+ARG CHIA_VERSION=1.8.0
 ARG VIRTUAL_ENV=/venv
 
 # Setup virtualenv
@@ -14,8 +14,9 @@ RUN pip install --no-cache-dir -U pip setuptools wheel
 # Install chia-blockchain
 RUN pip install "chia-blockchain==${CHIA_VERSION}"
 
-# Workaround for https://github.com/Chia-Network/chia-blockchain/issues/11257
-RUN chmod -R 777 /venv/lib/python3.10/site-packages/chia/wallet/puzzles
+# Compile installed code:
+RUN python -c "import compileall; \
+  compileall.compile_path(maxlevels=10)"
 
 ###
 
