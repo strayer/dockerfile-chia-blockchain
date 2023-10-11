@@ -3,7 +3,7 @@ FROM python:3.10-bullseye AS install
 RUN apt-get update; apt-get full-upgrade -y; rm -rf /var/lib/apt/lists
 
 # renovate: datasource=pypi depName=chia-blockchain
-ARG CHIA_VERSION=1.8.1
+ARG CHIA_VERSION=2.1.1
 ARG VIRTUAL_ENV=/venv
 
 # Setup virtualenv
