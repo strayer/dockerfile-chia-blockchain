@@ -1,4 +1,4 @@
-FROM python:3.10-bullseye AS install
+FROM python:3.11-bookworm AS install
 
 RUN apt-get update; apt-get full-upgrade -y; rm -rf /var/lib/apt/lists
 
@@ -20,7 +20,7 @@ RUN python -c "import compileall; \
 
 ###
 
-FROM python:3.10-slim-bullseye AS production
+FROM python:3.11-slim-bookworm AS production
 
 RUN apt-get update; apt-get full-upgrade -y; rm -rf /var/lib/apt/lists
 
