@@ -1,9 +1,9 @@
-FROM python:3.11-bookworm AS install
+FROM python:3.12-bookworm AS install
 
 RUN apt-get update; apt-get full-upgrade -y; rm -rf /var/lib/apt/lists
 
 # renovate: datasource=pypi depName=chia-blockchain
-ARG CHIA_VERSION=2.1.4
+ARG CHIA_VERSION=2.3.0
 ARG VIRTUAL_ENV=/venv
 
 # Setup virtualenv
@@ -20,7 +20,7 @@ RUN python -c "import compileall; \
 
 ###
 
-FROM python:3.11-slim-bookworm AS production
+FROM python:3.12-slim-bookworm AS production
 
 RUN apt-get update; apt-get full-upgrade -y; rm -rf /var/lib/apt/lists
 
