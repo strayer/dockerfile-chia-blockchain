@@ -3,7 +3,7 @@ FROM python:3.12-bookworm AS install
 RUN apt-get update; apt-get full-upgrade -y; rm -rf /var/lib/apt/lists
 
 # renovate: datasource=pypi depName=chia-blockchain
-ARG CHIA_VERSION=2.3.0
+ARG CHIA_VERSION=2.4.4
 ARG VIRTUAL_ENV=/venv
 
 # Setup virtualenv
